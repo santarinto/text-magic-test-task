@@ -19,8 +19,6 @@ class QuizServiceTest extends Unit
         $this->arithmeticExpressionParser = new ArithmeticExpressionParser();
     }
 
-    // tests
-
     /**
      * @dataProvider findRightAnswersProvider
      */

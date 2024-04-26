@@ -12,11 +12,9 @@ class AnswerCombinatorServiceTest extends \Codeception\Test\Unit
     protected UnitTester $tester;
     private AnswerCombinatorService $answerCombinatorService;
 
-    protected function _before() {
+    protected function _before(): void {
         $this->answerCombinatorService = new AnswerCombinatorService();
     }
-
-    // tests
 
     /**
      * @dataProvider simpleCombinationsDataProvider

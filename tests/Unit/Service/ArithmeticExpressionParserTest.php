@@ -17,8 +17,6 @@ class ArithmeticExpressionParserTest extends Unit
         $this->arithmeticExpressionParser = new ArithmeticExpressionParser();
     }
 
-    // tests
-
     /**
      * @dataProvider simpleNumbersProvider
      */
@@ -45,7 +43,6 @@ class ArithmeticExpressionParserTest extends Unit
             ['10', new ArithmeticExpression('10', 10)],
         ];
     }
-
 
     /**
      * @dataProvider simpleAdditionProvider
