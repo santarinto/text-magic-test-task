@@ -2,8 +2,6 @@
 
 namespace App\Service;
 
-use phpDocumentor\Reflection\Types\This;
-
 class AnswerCombinatorService
 {
     public const T_OR = 'ИЛИ';
