@@ -23,7 +23,10 @@ class ArithmeticExpressionParserTest extends Unit
      * @dataProvider simpleNumbersProvider
      */
     public function testSimpleNumbers(string $expression, ArithmeticExpression $excepted): void {
+        $this->setName($expression);
+
         $expression = $this->arithmeticExpressionParser->parse($expression);
+
         $this->assertEquals($excepted->getExpression(), $expression->getExpression());
         $this->assertEquals($excepted->getResult(), $expression->getResult());
     }
@@ -48,7 +51,10 @@ class ArithmeticExpressionParserTest extends Unit
      * @dataProvider simpleAdditionProvider
      */
     public function testSimpleAddition(string $expression, ArithmeticExpression $excepted): void {
+        $this->setName($expression);
+
         $expression = $this->arithmeticExpressionParser->parse($expression);
+
         $this->assertEquals($excepted->getExpression(), $expression->getExpression());
         $this->assertEquals($excepted->getResult(), $expression->getResult());
     }
@@ -72,6 +78,8 @@ class ArithmeticExpressionParserTest extends Unit
      * @dataProvider wrongExpressionProvider
      */
     public function testWrongExpression(string $expression): void {
+        $this->setName($expression);
+
         $this->expectExceptionObject(new WrongArithmeticExpression(ArithmeticExpressionParser::WRONG_EXPRESSION_ERROR_MESSAGE));
         $this->arithmeticExpressionParser->parse($expression);
     }
