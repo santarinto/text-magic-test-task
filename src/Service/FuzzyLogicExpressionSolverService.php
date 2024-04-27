@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-use App\Domain\Dto\ArithmeticExpression;
+use App\Domain\Dto\ArithmeticExpressionDto;
 
 class FuzzyLogicExpressionSolverService
 {
@@ -14,7 +14,7 @@ class FuzzyLogicExpressionSolverService
 
     public function solve(string $expression, array $suitableAnswers): string {
         $expression = $this->arithmeticExpressionParser->parse($expression);
-        /** @var ArithmeticExpression[] $answers */
+        /** @var ArithmeticExpressionDto[] $answers */
         $answers = array_map(fn($answer) => $this->arithmeticExpressionParser->parse($answer), $suitableAnswers);
         $rightAnswers = $this->quizService->findRightAnswers($expression, $answers);
         $rightAnswersKeys = [];

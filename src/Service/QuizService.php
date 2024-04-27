@@ -2,16 +2,16 @@
 
 namespace App\Service;
 
-use App\Domain\Dto\ArithmeticExpression;
+use App\Domain\Dto\ArithmeticExpressionDto;
 
 class QuizService
 {
     /**
-     * @param ArithmeticExpression $expression
-     * @param ArithmeticExpression[] $answers
-     * @return ArithmeticExpression[]
+     * @param ArithmeticExpressionDto $expression
+     * @param ArithmeticExpressionDto[] $answers
+     * @return ArithmeticExpressionDto[]
      */
-    public function findRightAnswers(ArithmeticExpression $expression, array $answers): array {
+    public function findRightAnswers(ArithmeticExpressionDto $expression, array $answers): array {
         $rightAnswers = [];
 
         foreach ($answers as $answer) {

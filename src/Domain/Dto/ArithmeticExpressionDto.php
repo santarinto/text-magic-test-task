@@ -2,7 +2,7 @@
 
 namespace App\Domain\Dto;
 
-class ArithmeticExpression
+class ArithmeticExpressionDto
 {
     private string $expression;
     private int $result;

@@ -2,7 +2,7 @@
 
 namespace App\Tests\Unit\Service;
 
-use App\Domain\Dto\ArithmeticExpression;
+use App\Domain\Dto\ArithmeticExpressionDto;
 use App\Exception\WrongArithmeticExpression;
 use App\Service\ArithmeticExpressionParser;
 use App\Tests\Support\UnitTester;
@@ -20,7 +20,7 @@ class ArithmeticExpressionParserTest extends Unit
     /**
      * @dataProvider simpleNumbersProvider
      */
-    public function testSimpleNumbers(string $expression, ArithmeticExpression $excepted): void {
+    public function testSimpleNumbers(string $expression, ArithmeticExpressionDto $excepted): void {
         $this->setName($expression);
 
         $expression = $this->arithmeticExpressionParser->parse($expression);
@@ -31,23 +31,23 @@ class ArithmeticExpressionParserTest extends Unit
 
     private function simpleNumbersProvider(): array {
         return [
-            ['1', new ArithmeticExpression('1', 1)],
-            ['2', new ArithmeticExpression('2', 2)],
-            ['3', new ArithmeticExpression('3', 3)],
-            ['4', new ArithmeticExpression('4', 4)],
-            ['5', new ArithmeticExpression('5', 5)],
-            ['6', new ArithmeticExpression('6', 6)],
-            ['7', new ArithmeticExpression('7', 7)],
-            ['8', new ArithmeticExpression('8', 8)],
-            ['9', new ArithmeticExpression('9', 9)],
-            ['10', new ArithmeticExpression('10', 10)],
+            ['1', new ArithmeticExpressionDto('1', 1)],
+            ['2', new ArithmeticExpressionDto('2', 2)],
+            ['3', new ArithmeticExpressionDto('3', 3)],
+            ['4', new ArithmeticExpressionDto('4', 4)],
+            ['5', new ArithmeticExpressionDto('5', 5)],
+            ['6', new ArithmeticExpressionDto('6', 6)],
+            ['7', new ArithmeticExpressionDto('7', 7)],
+            ['8', new ArithmeticExpressionDto('8', 8)],
+            ['9', new ArithmeticExpressionDto('9', 9)],
+            ['10', new ArithmeticExpressionDto('10', 10)],
         ];
     }
 
     /**
      * @dataProvider simpleAdditionProvider
      */
-    public function testSimpleAddition(string $expression, ArithmeticExpression $excepted): void {
+    public function testSimpleAddition(string $expression, ArithmeticExpressionDto $excepted): void {
         $this->setName($expression);
 
         $expression = $this->arithmeticExpressionParser->parse($expression);
@@ -58,16 +58,16 @@ class ArithmeticExpressionParserTest extends Unit
 
     private function simpleAdditionProvider(): array {
         return [
-            ['1 + 2', new ArithmeticExpression('1 + 2', 3)],
-            ['2 + 3 =', new ArithmeticExpression('2 + 3 =', 5)],
-            ['3 + 4', new ArithmeticExpression('3 + 4', 7)],
-            ['4 + 5 = ', new ArithmeticExpression('4 + 5 = ', 9)],
-            ['5 + 6', new ArithmeticExpression('5 + 6', 11)],
-            ['6 + 7 =', new ArithmeticExpression('6 + 7 =', 13)],
-            ['7 + 8', new ArithmeticExpression('7 + 8', 15)],
-            ['8 + 9 = ', new ArithmeticExpression('8 + 9 = ', 17)],
-            ['9 + 10', new ArithmeticExpression('9 + 10', 19)],
-            ['10 + 11 =', new ArithmeticExpression('10 + 11 =', 21)],
+            ['1 + 2', new ArithmeticExpressionDto('1 + 2', 3)],
+            ['2 + 3 =', new ArithmeticExpressionDto('2 + 3 =', 5)],
+            ['3 + 4', new ArithmeticExpressionDto('3 + 4', 7)],
+            ['4 + 5 = ', new ArithmeticExpressionDto('4 + 5 = ', 9)],
+            ['5 + 6', new ArithmeticExpressionDto('5 + 6', 11)],
+            ['6 + 7 =', new ArithmeticExpressionDto('6 + 7 =', 13)],
+            ['7 + 8', new ArithmeticExpressionDto('7 + 8', 15)],
+            ['8 + 9 = ', new ArithmeticExpressionDto('8 + 9 = ', 17)],
+            ['9 + 10', new ArithmeticExpressionDto('9 + 10', 19)],
+            ['10 + 11 =', new ArithmeticExpressionDto('10 + 11 =', 21)],
         ];
     }
 
