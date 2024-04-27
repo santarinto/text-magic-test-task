@@ -48,7 +48,7 @@ class TestsParseCommand extends Command
             $io->writeln("\t\tCompiled answer: {$dto->getCompiledAnswer()}");
         }
 
-        $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
+        $io->success('Complete!');
 
         return Command::SUCCESS;
     }
