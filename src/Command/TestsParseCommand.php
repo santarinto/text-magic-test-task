@@ -16,6 +16,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class TestsParseCommand extends Command
 {
     public function __construct(
+        private readonly string             $testsFilePath,
         private readonly LinesParserService $linesParserService
     ) {
         parent::__construct();
@@ -25,8 +26,7 @@ class TestsParseCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int {
         $io = new SymfonyStyle($input, $output);
-
-        $content = file_get_contents(__DIR__ . '/../../data/tests.txt');
+        $content = file_get_contents(__DIR__ . '/../../' . $this->testsFilePath);
         $blocks = explode("\n\n\n", $content);
         $countBlocks = count($blocks);
 
