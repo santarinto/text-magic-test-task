@@ -1,7 +1,8 @@
 version: '3'
 
 services:
-  database:
+  db:
+    container_name: db
     image: postgres:${POSTGRES_VERSION:-16}-alpine
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-app}

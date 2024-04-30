@@ -43,7 +43,7 @@ app-tests-history:		## Run App parse history
 	docker compose run backend php /app/bin/console app:tests-history
 
 app-tests-rewind:		## Run App parse tests
-	docker compose run backend php /app/bin/console app:tests-rewind
+	docker compose run backend php /app/bin/console app:tests-rewind $(filter-out $@,$(MAKECMDGOALS))
 
 clean:		## Clean cache
 	docker compose run backend php /app/bin/console cache:clear
