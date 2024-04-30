@@ -30,3 +30,7 @@ services:
       $testsFilePath: '%env(FILE_WITH_TESTS_PATH)%'
       $linesParserService: '@App\Service\LinesParserService'
       $fuzzyLogicExpressionSolverService: '@App\Service\FuzzyLogicExpressionSolverService'
+
+  App\EventListener\AnswerValidationSuccessEventListener:
+    arguments:
+      $logger: '@monolog.logger.math_calculation'

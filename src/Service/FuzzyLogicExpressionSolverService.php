@@ -3,13 +3,17 @@
 namespace App\Service;
 
 use App\Domain\Dto\ArithmeticExpressionDto;
+use App\Domain\Dto\TestAttemptDto;
+use App\Event\AnswerValidationSuccessEvent;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class FuzzyLogicExpressionSolverService
+readonly class FuzzyLogicExpressionSolverService
 {
     public function __construct(
-        private readonly ArithmeticExpressionParser $arithmeticExpressionParser,
-        private readonly QuizService                $quizService,
-        private readonly AnswerCombinatorService    $answerCombinatorService,
+        private ArithmeticExpressionParser $arithmeticExpressionParser,
+        private QuizService                $quizService,
+        private AnswerCombinatorService    $answerCombinatorService,
+        private EventDispatcherInterface   $eventDispatcher,
     ) {}
 
     public function solve(string $expression, array $suitableAnswers): string {
@@ -31,6 +35,13 @@ class FuzzyLogicExpressionSolverService
             }
         }
 
-        return $this->answerCombinatorService->combine($rightAnswersKeys);
+        $compiledResult = $this->answerCombinatorService->combine($rightAnswersKeys);
+        $this->eventDispatcher->dispatch(new AnswerValidationSuccessEvent(new TestAttemptDto(
+            $expression->getExpression(),
+            array_map(fn($answer) => $answer->getExpression(), $answers),
+            $compiledResult
+        )));
+
+        return $compiledResult;
     }
 }

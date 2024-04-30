@@ -15,6 +15,7 @@ class ArithmeticExpressionParser
 
         if (preg_match($additionPattern, $expression, $matches)) {
             $result = $this->calculateSum((int)$matches[1], (int)$matches[2]);
+
             return new ArithmeticExpressionDto($expression, $result);
         } elseif (preg_match($numberPattern, $expression)) {
             return new ArithmeticExpressionDto($expression, (int)$expression);

@@ -1,6 +1,14 @@
 monolog:
     channels:
         - deprecation # Deprecations are logged in the dedicated "deprecation" channel when it exists
+        - math_calculation # Custom channel for math calculation
+
+    handlers:
+        math_log:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%-math-calculation.log"
+            level: info
+            channels: [ math_calculation ]
 
 when@dev:
     monolog:
