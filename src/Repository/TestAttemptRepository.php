@@ -19,4 +19,16 @@ class TestAttemptRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry) {
         parent::__construct($registry, TestAttempt::class);
     }
+
+    /**
+     * @return TestAttempt[] Returns an array of TestAttempt objects
+     */
+    public function getLast20TestAttempts(): array {
+        return $this
+            ->createQueryBuilder('ta')
+            ->orderBy('ta.id', 'DESC')
+            ->setMaxResults(20)
+            ->getQuery()
+            ->getResult();
+    }
 }
