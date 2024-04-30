@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TestAttemptRepository::class)]
 #[ORM\Table(name: "test_attempts")]
+#[ORM\HasLifecycleCallbacks]
 class TestAttempt
 {
     #[ORM\Id]
@@ -15,7 +16,7 @@ class TestAttempt
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: "datetime", nullable: false)]
     private ?\DateTimeInterface $createdAt = null;
 
     #[ORM\Column(type: "string", length: 128, nullable: false)]
@@ -29,7 +30,7 @@ class TestAttempt
 
     #[ORM\PrePersist]
     public function onPrePersist(): void {
-        if (!$this->createdAt) {
+        if (is_null($this->createdAt)) {
             $this->createdAt = new DateTime();
         }
     }

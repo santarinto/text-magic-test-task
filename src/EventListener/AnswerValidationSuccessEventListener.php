@@ -2,7 +2,9 @@
 
 namespace App\EventListener;
 
+use App\Entity\TestAttempt;
 use App\Event\AnswerValidationSuccessEvent;
+use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
@@ -10,7 +12,8 @@ use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 final readonly class AnswerValidationSuccessEventListener
 {
     public function __construct(
-        private LoggerInterface $logger
+        private LoggerInterface        $logger,
+        private EntityManagerInterface $entityManager,
     ) {}
 
     public function __invoke(AnswerValidationSuccessEvent $event): void {
@@ -24,5 +27,12 @@ final readonly class AnswerValidationSuccessEventListener
             'results' => $results,
             'compiledAnswer' => $compiledAnswer
         ]);
+
+        $this->entityManager->wrapInTransaction(fn() => $this
+            ->entityManager
+            ->persist((new TestAttempt())
+                ->setExpression($expression)
+                ->setResults($results)
+                ->setCompiledAnswer($compiledAnswer)));
     }
 }

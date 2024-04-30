@@ -34,3 +34,4 @@ services:
   App\EventListener\AnswerValidationSuccessEventListener:
     arguments:
       $logger: '@monolog.logger.math_calculation'
+      $entityManager: '@doctrine.orm.entity_manager'
