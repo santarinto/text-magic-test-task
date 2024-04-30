@@ -8,6 +8,8 @@ use App\Service\FuzzyLogicExpressionSolverService;
 use App\Service\QuizService;
 use App\Tests\Support\UnitTester;
 use Codeception\Test\Unit;
+use PHPUnit\Framework\MockObject\MockObject;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * This should be a functional test. However, I encountered a problem with the
@@ -17,12 +19,15 @@ class FuzzyLogicExpressionSolverServiceTest extends Unit
 {
     protected UnitTester $tester;
     private readonly FuzzyLogicExpressionSolverService $fuzzyLogicExpressionSolverService;
+    private MockObject $eventDispatcher;
 
     protected function _before(): void {
+        $this->eventDispatcher = $this->createMock(EventDispatcherInterface::class);
         $this->fuzzyLogicExpressionSolverService = new FuzzyLogicExpressionSolverService(
             new ArithmeticExpressionParser(),
             new QuizService(),
-            new AnswerCombinatorService()
+            new AnswerCombinatorService(),
+            $this->eventDispatcher
         );
     }
 
