@@ -7,8 +7,9 @@
 
 Установка: 
 
-1. Запустить `docker-compose up -d`
-2. Установить зависимости `composer install`
+1. Собрать `make build`
+2. Запустить `make up`
+3. Установить зависимости `make dev- composer-install`
 
 
 ### Тесты
