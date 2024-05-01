@@ -28,20 +28,20 @@ php vendor/bin/codecept run Unit
 
 Проверка файла с заданиями, выводит количество заданий и количество вопросов в каждом задании.
 ```bash
-php bin/console  app:tests-parse
+make app-tests-parse
 ```
 
 Запускает все тесты, самая комплексная команда, также сохраняет их в БД
 ```bash
-app:tests-run
+make app-tests-run
 ```
 
 Выводит историю запуска тестов (без возможности навигации по истории)
 ```bash
-app:tests-history
+make app-tests-history
 ```
 
 Выводит результат запуска теста по ID. По идее команда должна была "проиграть" его (чтобы отразить работу event-dispatcher подхода), но мне переезжать надо :), сорри.
 ```bash
-app:tests-rewind <TEST_ID>
+make app-tests-rewind <TEST_ID>
 ```
